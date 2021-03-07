@@ -23,8 +23,18 @@ body{
   height: 80%;
   border: .5px solid black;
   border-radius: 50%;
+  animation-name: dropdown;
+  animation-duration: .5s;
 }
 
+@keyframes dropdown {
+  from {
+    transform: translateY(-400px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
 /* TODO: make pieces red/blue,  depending on player 1/2 piece */
 
 .red{
@@ -44,4 +54,9 @@ body{
 #column-top td:hover {
   background-color: gold;
   cursor: pointer;
+}
+
+.heading {
+  animation-name: dropdown;
+  animation-duration: 5s;
 }

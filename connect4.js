@@ -5,7 +5,11 @@ const HEIGHT = 6;
 // Instead of using player 1/2 I have opted for a simpler 'red'/'blue' version instead. That makes it easier to understand and doesn't require 
 // as much writing down the line. 
 
-let currPlayer = 'red';
+const players = {
+  playerOne: 'red',
+  playerTwo: 'blue'
+}
+let currPlayer = players.playerOne;
 const board = [];
 
 
@@ -86,11 +90,7 @@ function findSpotForCol(x) {
 // Function 'switchPlayer()' simply swaps the value of 'currPlayer' (red <-> blue <-> red) and is triggered each time a spot in the gameboard is filled.
 
 function switchPlayer() {
-  if (currPlayer === 'red') {
-    currPlayer = 'blue';
-  } else {
-    currPlayer = 'red';
-  }
+  currPlayer === players.playerOne ? currPlayer = players.playerTwo : currPlayer = players.playerOne;
 }
 
 
@@ -122,7 +122,7 @@ function endGame(msg) {
   }
   makeBoard();
   makeHtmlBoard();
-  currPlayer = 'red';
+  currPlayer = players.playerOne;
 }
 
 
@@ -137,15 +137,15 @@ function handleClick(evt) {
 
 
   // We run the 'checkForWin()' function each time a spot in the gameboard is filled. 
-  if (checkForWin()) {
-    return endGame(`${currPlayer.toUpperCase()} player won!`);
-  }
+  if (checkForWin()) return endGame(`${currPlayer.toUpperCase()} player won!`);
+
+
 
 
   // If there is no winner we then check for a tie
-  if (checkForTie()) {
-    return endGame('Draw')
-  }
+  if (checkForTie()) return endGame('Draw');
+
+
 
 
   // If neither thing happens we just switch players and the game continues.
